@@ -1,0 +1,38 @@
+First, I want to start off saying that I am new to machine learning, so I did some reading on some online sources that helped guide me in the right direction for this assignment. Those are listed below.
+
+Resources:
+1. https://pieriantraining.com/7-machine-learning-regression-algorithms-python/
+2. https://medium.com/thrive-in-ai/classification-algorithms-in-python-5f58a7a27b88
+3. https://scikit-learn.org/stable/modules/preprocessing.html
+4. https://www.geeksforgeeks.org/ml-linear-regression/
+5. https://realpython.com/train-test-split-python-data/
+6. https://www.geeksforgeeks.org/wine-quality-prediction-machine-learning/
+
+
+
+Secondly, I have chosen to use Python. Below is my code.
+
+import pandas as pd
+imprt = pd.read_csv('winequality.csv')
+print(imprt.head())
+imprt.info()
+imprt.describe().T
+from sklearn.model_selection import train_test_split
+x=imprt.drop('quality', axis=1)
+y=imprt.quality
+x_train,x_test,y_train, y_test= train_test_split(x,y, test_size=0.2, random_state=42)
+from sklearn.linear_model import LinearRegression
+reg = LinearRegression().fit(x,y)
+reg.score(x,y)
+from sklearn.naive_bayes import GaussianNB
+gnb=GaussianNB().fit(x_train,y_train)
+gnb.score(x_test, y_test)
+
+
+After performing a lineaer regression, the score was 0.3605517030389306. This is not a very high score, thus this model would not be the greatest in predicting wine quality. Next, I read about different classification 
+models you can use,and I chose the Gaussian Naive Bayes Classifier model because I wanted to see how this model reacted to aassuming each paramter followed a normal distribution. Since the features all appeaared distinct,
+I thought a Gaussian Naive Bayes Classifier could work. Once I did the Gaussian Naive Bayes Classifier, the score was 0.55. This is higher than the linear regression model I chose, but still not the greatest predictor ever.
+Throughout this process I learned a great deal. I was rusty on my python skills because it has been a bit since I have used it so it was nice to refresh myself on that. I used (https://www.educative.io/blog/pandas-cheat-sheet)
+as a refresher on what was what with pandas. I had some issues on getting python to read the csv correctly, until I realized there was a disconncet between python reading the csv aand the csv seperating values by semicolons
+instead of commas. I used "sep=;" on textedit to work around this with the help of (https://www.ablebits.com/office-addins-blog/change-excel-csv-delimiter/). Now that I know all of these basics behind machine learning, I hope
+to do some more exploration and leanring on my own.
